@@ -1,7 +1,7 @@
 # ROS2 Wrapper for Intel&reg; RealSense&trade; Devices for Dashing
 
 *This is "Dashing" support of "ROS2 Wrapper for Intel&reg; RealSense&trade; Devices".*
-*See also the [original README](./README-orig.md).
+*See also the [original README](./README-orig.md).*
 
 The following description is made from the [original README](./README-orig.md), so pleaset let me know
 
