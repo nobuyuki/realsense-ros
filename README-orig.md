@@ -1,24 +1,16 @@
-# ROS2 Wrapper for Intel&reg; RealSense&trade; Devices for Dashing
-
-*This is "Dashing" support of "ROS2 Wrapper for Intel&reg; RealSense&trade; Devices".*
-*See also the [original README](./README-orig.md).
-
-The following description is made from the [original README](./README-orig.md), so pleaset let me know
-
-
-
+# ROS2 Wrapper for Intel&reg; RealSense&trade; Devices
 These are packages for using Intel RealSense cameras (D400 and L500 series, SR300 camera and T265 Tracking Module) with ROS2.
 
 LibRealSense supported version: v2.38.1 (see [realsense2_camera release notes](https://github.com/IntelRealSense/realsense-ros/releases))
 
 ## Installation Instructions
-This version supports ROS2 dashing on Ubuntu 18.04.
+This version supports ROS2 eloquent on Ubuntu 18.04.
 
    ### Step 1: Install the ROS2 distribution
-   - #### Install [ROS2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/), on Ubuntu 18.04.
+   - #### Install [ROS2 Eloquent](https://index.ros.org/doc/ros2/Installation/Eloquent/Linux-Install-Debians/), on Ubuntu 18.04.
 
    ```bash
-  ROS_DISTRO=dashing
+  ROS_DISTRO=eloquent
   sudo apt update && sudo apt install curl gnupg2 lsb-release
   curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
   sudo sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
@@ -50,9 +42,9 @@ This version supports ROS2 dashing on Ubuntu 18.04.
    mkdir -p ~/ros2_ws/src
    cd ~/ros2_ws/src/
    ```
-   - Clone the latest Dashing Intel&reg; RealSense&trade;  wrapper from [here](https://github.com/nobuyuki/realsense-ros-dashing.git) into '~/ros2_ws/src/' with renaming to `realsense-ros`.
+   - Clone the latest Eloquent Intel&reg; RealSense&trade;  wrapper from [here](https://github.com/IntelRealSense/realsense-ros.git) into '~/ros2_ws/src/'
    ```bashrc
-   git clone https://github.com/nobuyuki/realsense-ros-dashing.git realsense-ros
+   git clone https://github.com/IntelRealSense/realsense-ros.git -b eloquent
    cd ~/ros2_ws
    ```
 
