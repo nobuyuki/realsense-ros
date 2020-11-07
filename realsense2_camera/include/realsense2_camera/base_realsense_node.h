@@ -315,7 +315,7 @@ namespace realsense2_camera
 
         sensor_msgs::msg::PointCloud2 _msg_pointcloud;
         std::vector< unsigned int > _valid_pc_indices;
-        std::vector<rclcpp::node_interfaces::OnSetParametersCallbackHandle::SharedPtr> _callback_handlers;
+        std::vector<rclcpp::node_interfaces::NodeParametersInterface::OnParametersSetCallbackType> _callback_handlers;
         std::set<std::string> _variable_names;
 
     };//end class

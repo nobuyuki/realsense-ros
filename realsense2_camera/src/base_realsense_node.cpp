@@ -422,7 +422,7 @@ void BaseRealSenseNode::registerAutoExposureROIOption(const std::string option_n
     }
 
     _callback_handlers.push_back(
-        _node.add_on_set_parameters_callback(
+        _node.set_on_parameters_set_callback(
             [this, sensor, variable_name](const std::vector<rclcpp::Parameter> & parameters) 
                 { 
                     rcl_interfaces::msg::SetParametersResult result;
@@ -497,9 +497,13 @@ void BaseRealSenseNode::set_parameter(rs2::options sensor, rs2_option option, co
         range.to_value = int(op_range.max);
         crnt_descriptor.integer_range.push_back(range);
         if (std::is_same<T, bool>::value)
+	{
             ROS_DEBUG_STREAM("Declare: BOOL::" << option_name << " = " << option_value << "[" << op_range.min << ", " << op_range.max << "]");
-        else
+        }
+	else
+	{
             ROS_DEBUG_STREAM("Declare: INT::" << option_name << " = " << option_value << "[" << op_range.min << ", " << op_range.max << "]");
+        }
     }
     else
     {
@@ -532,7 +536,7 @@ void BaseRealSenseNode::set_parameter(rs2::options sensor, rs2_option option, co
         }
     }
     _callback_handlers.push_back(
-        _node.add_on_set_parameters_callback(
+        _node.set_on_parameters_set_callback(
             [option, sensor, option_name](const std::vector<rclcpp::Parameter> & parameters) 
                 { 
                     rcl_interfaces::msg::SetParametersResult result;
@@ -749,13 +753,19 @@ void BaseRealSenseNode::setupDevice()
                     ROS_INFO_STREAM("JSON file is loaded! (" << _json_file_path << ")");
                 }
                 else
+	        {
                     ROS_WARN_STREAM("JSON file provided doesn't exist! (" << _json_file_path << ")");
+		}
             }
             else
+	    {
                 ROS_WARN("Device does not support advanced settings!");
+	    }
         }
         else
+	{
             ROS_INFO("JSON file is not provided");
+	}
 
         auto camera_name = _dev.get_info(RS2_CAMERA_INFO_NAME);
         ROS_INFO_STREAM("Device Name: " << camera_name);

@@ -5,6 +5,8 @@
 
 #include <string>
 
+#include <rclcpp/logging.hpp>
+
 #define REALSENSE_ROS_MAJOR_VERSION    3
 #define REALSENSE_ROS_MINOR_VERSION    1
 #define REALSENSE_ROS_PATCH_VERSION    1
@@ -18,14 +20,60 @@
 #define ROS_INFO(...) RCLCPP_INFO(_logger, __VA_ARGS__)
 #define ROS_WARN(...) RCLCPP_WARN(_logger, __VA_ARGS__)
 #define ROS_ERROR(...) RCLCPP_ERROR(_logger, __VA_ARGS__)
-#define ROS_DEBUG_STREAM(msg) RCLCPP_DEBUG_STREAM(_logger, msg)
-#define ROS_INFO_STREAM(msg) RCLCPP_INFO_STREAM(_logger, msg)
-#define ROS_WARN_STREAM(msg) RCLCPP_WARN_STREAM(_logger, msg)
-#define ROS_ERROR_STREAM(msg) RCLCPP_ERROR_STREAM(_logger, msg)
-#define ROS_FATAL_STREAM(msg) RCLCPP_FATAL_STREAM(_logger, msg)
+#define ROS_DEBUG_STREAM(msg)\
+   do { \
+    std::stringstream ss; \
+    ss << msg; \
+    RCUTILS_LOG_DEBUG_NAMED( \
+      _logger.get_name(), \
+      "%s", rclcpp::get_c_string(ss.str())); \
+  } while (0)
+
+#define ROS_INFO_STREAM(msg) \
+   do { \
+    std::stringstream ss; \
+    ss << msg; \
+    RCUTILS_LOG_INFO_NAMED( \
+      _logger.get_name(), \
+      "%s", rclcpp::get_c_string(ss.str())); \
+  } while (0)
+
+#define ROS_WARN_STREAM(msg)	 \
+   do { \
+    std::stringstream ss; \
+    ss << msg; \
+    RCUTILS_LOG_WARN_NAMED( \
+      _logger.get_name(), \
+      "%s", rclcpp::get_c_string(ss.str())); \
+  } while (0)
+
+#define ROS_ERROR_STREAM(msg)	 \
+   do { \
+    std::stringstream ss; \
+    ss << msg; \
+    RCUTILS_LOG_ERROR_NAMED( \
+      _logger.get_name(), \
+      "%s", rclcpp::get_c_string(ss.str())); \
+  } while (0)
+
+#define ROS_FATAL_STREAM(msg)	 \
+   do { \
+    std::stringstream ss; \
+    ss << msg; \
+    RCUTILS_LOG_FATAL_NAMED( \
+      _logger.get_name(), \
+      "%s", rclcpp::get_c_string(ss.str())); \
+  } while (0)
 
 #define ROS_WARN_COND(cond, ...) RCLCPP_WARN_EXPRESSION(_logger, cond, __VA_ARGS__)
-#define ROS_WARN_STREAM_COND(cond, msg) RCLCPP_WARN_STREAM_EXPRESSION(_logger, cond, msg)
+#define ROS_WARN_STREAM_COND(cond, msg) \
+  if (cond) { \
+    std::stringstream ss; \
+    ss << msg; \
+    RCUTILS_LOG_WARN_NAMED( \
+      _logger.get_name(), \
+      "%s", rclcpp::get_c_string(ss.str())); \
+  }
 
 namespace realsense2_camera
 {
