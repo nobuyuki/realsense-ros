@@ -39,6 +39,6 @@ def generate_launch_description():
                            'unite_imu_method': 'linear_interpolation'
                            }],
             output='screen',
-            emulate_tty=True,
+#           emulate_tty=True,   # Not supported in Dashing. Just ignore at now.
             ),
     ])
