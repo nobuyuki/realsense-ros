@@ -1,10 +1,12 @@
 # ROS2 Wrapper for Intel&reg; RealSense&trade; Devices for Dashing
 
+------
 *This is "Dashing" support of "ROS2 Wrapper for Intel&reg; RealSense&trade; Devices".*
 *See also the [original README](./README-orig.md).*
 
-The following description is made from the [original README](./README-orig.md), so pleaset let me know
-
+The following description is made from the [original README](./README-orig.md),
+with minor modifications for Dashing.
+-----
 
 
 These are packages for using Intel RealSense cameras (D400 and L500 series, SR300 camera and T265 Tracking Module) with ROS2.
